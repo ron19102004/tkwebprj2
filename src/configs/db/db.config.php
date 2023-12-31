@@ -55,9 +55,32 @@ class DB
         }
         return $result;
     }
+    public static function query_params($sql, array $params)
+    {
+        $result = null;
+        $keys = array_keys($params);
+        try {
+            self::getConnection();
+            $stmt = self::$connect->prepare($sql);
+            for ($i = 0; $i < count($keys); $i++) {
+                $stmt->bindParam(':' . $keys[$i], $params[$keys[$i]]);
+            }
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            self::close();
+            self::$query = '';
+            throw new CustomException($e->getMessage(), $e->getCode(), $e);
+        } finally {
+            self::$query = '';
+            self::close();
+        }
+        return $result;
+    }
     public function execute()
     {
-        echo DB::$query;
+        print(DB::$query);
         try {
             DB::getConnection();
             if (DB::$connect != null && is_string(DB::$query) && strlen(DB::$query) > 0) {
@@ -82,6 +105,7 @@ class DB
     }
     public  function getMany()
     {
+        print(DB::$query);
         $result = null;
         try {
             DB::getConnection();
@@ -113,46 +137,39 @@ class DB
     }
     public  function groupBy($byGroup)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' GROUP BY ' . $byGroup;
+        DB::$query = DB::$query . ' GROUP BY ' . $byGroup;
         return $this;
     }
     public  function skip(int $skip)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' OFFSET ' . $skip;
+        DB::$query = DB::$query . ' OFFSET ' . $skip;
         return $this;
     }
     public  function take(int $take)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' LIMIT ' . $take;
+        DB::$query = DB::$query . ' LIMIT ' . $take;
         return $this;
     }
     public  function andWhere($condition, $operator, $value)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' AND ' . $condition . $operator . ':' . $condition;
+        DB::$query = DB::$query . ' AND ' . $condition . $operator . ':' . $condition;
         array_push(DB::$arrayValueParam, ["index" => $condition, "value" => $value]);
         return $this;
     }
     public  function where($condition, $operator, $value)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' WHERE ' . $condition . $operator . ':' . $condition;
+        DB::$query = DB::$query . ' WHERE ' . $condition . $operator . ':' . $condition;
         array_push(DB::$arrayValueParam, ["index" => $condition, "value" => $value]);
         return $this;
     }
     public function join($table,  $condition)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' JOIN ' . $table . ' ON ' . $condition;
+        DB::$query = DB::$query . ' JOIN ' . $table . ' ON ' . $condition;
         return $this;
     }
     public  function from($table)
     {
-        $query = DB::$query;
-        DB::$query = $query . ' FROM ' . $table;
+        DB::$query = DB::$query . ' FROM ' . $table;
         return $this;
     }
     public static function select($attr)
@@ -162,18 +179,18 @@ class DB
     }
     public static function update($table)
     {
-        DB::$query = 'UPDATE ' . $table;
+        DB::$query = 'UPDATE FROM ' . $table;
         return new self();
     }
     public function set($attr, $value)
     {
-        DB::$query = 'SET ' . $attr . '=:' . $attr;
+        DB::$query = DB::$query . ' SET ' . $attr . '=:' . $attr;
         array_push(DB::$arrayValueParam, ["index" => $attr, "value" => $value]);
         return $this;
     }
     public function andSet($attr, $value)
     {
-        DB::$query = ',' . $attr . '=:' . $attr;
+        DB::$query = DB::$query . ',' . $attr . '=:' . $attr;
         array_push(DB::$arrayValueParam, ["index" => $attr, "value" => $value]);
         return $this;
     }
@@ -227,3 +244,4 @@ class DB
         return new self();
     }
 }
+;
