@@ -15,7 +15,7 @@
     <main>
         <section class="bg-white dark:bg-gray-900">
             <div class="flex justify-center min-h-screen">
-                <div class="hidden bg-cover lg:block lg:w-2/5" style="background-image: url(<?php Helper::assets('bicycle-bg.jpg') ?>)">
+                <div class="hidden bg-cover lg:block lg:w-2/5" style="background-image: url(<?php echo Helper::assets('bicycle-bg.jpg') ?>)">
                 </div>
 
                 <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
@@ -28,7 +28,7 @@
                             Hãy để chúng tôi giúp bạn hoàn tất quá trình, để bạn có thể xác minh tài khoản cá nhân của mình và bắt đầu thiết lập hồ sơ của bạn.
                         </p>
 
-                        <form action="<?php Helper::routes('auth.route.php'); ?>" method="post" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                        <form action="<?php echo Helper::routes('auth.route.php'); ?>" method="post" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                             <input type="text" hidden name="method" value="register">
                             <div>
                                 <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Họ đệm</label>

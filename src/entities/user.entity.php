@@ -1,22 +1,20 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . "/src/entities/ibase.entity.php");
-
-class User implements IEntityBase
+class User 
 {
     public $id;
-    private $firstName;
-    private $lastName;
-    private $phoneNumber;
-    private $email;
-    private $address;
-    private $vip;
-    private $deleted;
-    private $avatar;
-    private $role;
-    private $password;
+    public $firstName;
+    public $lastName;
+    public $phoneNumber;
+    public $email;
+    public $address;
+    public $vip;
+    public $deleted;
+    public $avatar;
+    public $role;
+    public $password;
 
     const ENTITY_NAME = 'users';
-    const FILLABLE = 'firstName, lastName, phoneNumber, email, address, vip, avatar, role, password';
+    const FILLABLE = 'id,firstName, lastName, phoneNumber, email, address, vip, avatar, role, password';
 
     public function import_form($firstName, $lastName, $phoneNumber, $email, $password)
     {
@@ -26,33 +24,18 @@ class User implements IEntityBase
         $this->email = $email;
         $this->password = Validator::hashPassword($password);
     }
-    public function importdb(
-        $id,
-        $firstName,
-        $lastName,
-        $phoneNumber,
-        $email,
-        $address,
-        $vip,
-        $deleted,
-        $avatar,
-        $role,
-        $password
-    ) {
-        $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->phoneNumber = $phoneNumber;
-        $this->email = $email;
-        $this->address = $address;
-        $this->vip = $vip;
-        $this->deleted = $deleted;
-        $this->avatar = $avatar;
-        $this->role = $role;
-        $this->password = $password;
-    }
-    public function __construct()
-    {
+    public function importDb($data) {
+        $this->id = $data['id'];
+        $this->firstName = $data['firstName'];
+        $this->lastName = $data['lastName'];
+        $this->phoneNumber = $data['phoneNumber'];
+        $this->email = $data['email'];
+        $this->address = $data['address'];
+        $this->vip = $data['vip'];
+        $this->deleted = $data['deleted'];
+        $this->avatar = $data['avatar'];
+        $this->role = $data['role'];
+        $this->password = $data['password'];
     }
 
     public function toArray()

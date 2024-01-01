@@ -1,11 +1,14 @@
 <?php
-class ColorService
+
+class DiscountService
 {
     private $repository;
+
     public function __construct()
     {
-        $this->repository = new Repository(Color::ENTITY_NAME, Color::FILLABLE);
+        $this->repository = new Repository(Discount::ENTITY_NAME, Discount::FILLABLE);
     }
+
     public function save($entity)
     {
         $this->repository->save($entity);

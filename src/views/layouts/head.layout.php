@@ -1,12 +1,9 @@
-<?php 
+<?php
 require($_SERVER['DOCUMENT_ROOT'] . "/src/utils/helper.util.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/src/utils/validator.utils.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/src/middlewares/admin.guard.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/src/middlewares/auth.guard.php");
-
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
+session_start();
 ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +26,29 @@ if (session_status() == PHP_SESSION_NONE) {
         content-visibility: auto;
       }
     }
+    /* Cho thanh cuộn chiều dọc */
+::-webkit-scrollbar {
+  width: 5px; /* Chiều rộng của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray; /* Màu của phần thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+  background-color: white; /* Màu của phần track thanh cuộn */
+}
+
+/* Cho thanh cuộn chiều ngang */
+::-webkit-scrollbar {
+  height: 12px; /* Chiều cao của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+
   </style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 <!-- //flowbite -->

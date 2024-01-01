@@ -1,13 +1,13 @@
 <?php
-class Color
+class Size 
 {
     public $id;
     public $name;
     public $value;
     public $deleted;
 
-    const ENTITY_NAME = 'colors';
-    const FILLABLE = 'name, value,id,deleted';
+    const ENTITY_NAME = 'sizes';
+    const FILLABLE = 'name, value';
 
     public function import_form($name, $value)
     {

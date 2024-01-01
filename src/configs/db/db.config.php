@@ -25,6 +25,7 @@ class DB
             self::$connect = null;
             throw new CustomException($e->getMessage(), $e->getCode(), $e);
         }
+        return self::$connect;
     }
     public static function close()
     {
@@ -62,7 +63,7 @@ class DB
         try {
             self::getConnection();
             $stmt = self::$connect->prepare($sql);
-            for ($i = 0; $i < count($keys); $i++) {
+            for ($i = 0; $i < count($params); $i++) {
                 $stmt->bindParam(':' . $keys[$i], $params[$keys[$i]]);
             }
             $stmt->execute();
@@ -80,13 +81,12 @@ class DB
     }
     public function execute()
     {
-        print(DB::$query);
         try {
             DB::getConnection();
             if (DB::$connect != null && is_string(DB::$query) && strlen(DB::$query) > 0) {
                 $stmt = DB::$connect->prepare(DB::$query);
                 if (!empty(DB::$arrayValueParam)) {
-                    foreach (DB::$arrayValueParam[0] as $obj) {
+                    foreach (DB::$arrayValueParam as $obj) {
                         $stmt->bindParam(':' . $obj['index'], $obj['value']);
                     }
                     DB::$arrayValueParam = [];
@@ -105,7 +105,6 @@ class DB
     }
     public  function getMany()
     {
-        print(DB::$query);
         $result = null;
         try {
             DB::getConnection();
@@ -145,9 +144,15 @@ class DB
         DB::$query = DB::$query . ' OFFSET ' . $skip;
         return $this;
     }
+
     public  function take(int $take)
     {
         DB::$query = DB::$query . ' LIMIT ' . $take;
+        return $this;
+    }
+    public  function having($having)
+    {
+        DB::$query = DB::$query . ' HAVING ' . $having;
         return $this;
     }
     public  function andWhere($condition, $operator, $value)
@@ -196,7 +201,7 @@ class DB
     }
     public static function delete($table, $id)
     {
-        self::$query = 'DELETE FROM ' . $table . ' WHERE id:=id';
+        self::$query = 'DELETE FROM ' . $table . ' WHERE id=:id';
         array_push(self::$arrayValueParam, ["index" => 'id', "value" => $id]);
         return new self();
     }
@@ -217,10 +222,10 @@ class DB
 
         self::$query = 'INSERT INTO ' . $table . '(' . $attr . ')' . ' VALUES (' . $value . ')';
         $arrayParam = [];
-        for ($i = 0; $i < count($keys); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             array_push($arrayParam, ["index" => $keys[$i], "value" => $values[$keys[$i]]]);
         }
-        array_push(self::$arrayValueParam, $arrayParam);
+        self::$arrayValueParam = $arrayParam;
         return new self();
     }
     public static function save_update($table, $id, array $values)
@@ -237,11 +242,10 @@ class DB
         self::$query = 'UPDATE FROM ' . $table . 'SET ' . $attr . ' WHERE id = :id';
         $arrayParam = [];
         array_push($arrayParam, ["index" => 'id', "value" => $id]);
-        for ($i = 0; $i < count($keys); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             array_push($arrayParam, ["index" => $keys[$i], "value" => $values[$keys[$i]]]);
         }
-        array_push(self::$arrayValueParam, $arrayParam);
+        self::$arrayValueParam = $arrayParam;
         return new self();
     }
-}
-;
+};

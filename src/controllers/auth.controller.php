@@ -20,7 +20,7 @@ class AuthController
                 return;
             }
             $user = new User();
-            $user->importdb($userdb['id'], $userdb['firstNamw'], $userdb['lastName'], $userdb['phoneNumber'], $userdb['email'], $userdb['address'], $userdb['vip'], $userdb['deleted'], $userdb['avatar'], $userdb['role'], $userdb['password']);
+            $user->importdb($userdb);
             if (Validator::comparePassword(Validator::validate('password'), $user->toArraySave()['password']) == false) {
                 Helper::toast('error', 'Mật khẩu người dùng sai')->to(Helper::pages('auth/login.auth.php'));
                 return;

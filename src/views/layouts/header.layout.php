@@ -1,4 +1,9 @@
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/src/views/pages/components/toast.component.php"); ?>
+<?php
+if (isset($_SESSION['role']) && $_SESSION['role'] == Role::ADMIN) {
+    Helper::redirect(Helper::pages('admin/home.php'));
+}
+Helper::addComponent('toast.component.php');
+?>
 <header class="w-full">
     <nav class="bg-white shadow-lg">
         <div class="md:flex items-center justify-between py-2 px-8 md:px-12">
@@ -19,12 +24,14 @@
                 <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Home</a>
                 <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">About</a>
                 <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Contact</a>
-                <a href="<?php Helper::pages('auth/login.auth.php'); ?>" class="
-                <?php echo AuthGuard::run() ? 'hidden' : ''; ?>
-                text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Login</a>
-                <a href="<?php Helper::routes('auth.route.php'); ?>/?method=logout" class="
-                <?php echo AuthGuard::run() ? '' : 'hidden'; ?>
-                text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Logout</a>
+                <?php
+                if (AuthGuard::run()) {
+                    echo '<a href="' . Helper::routes('auth.route.php') . '/?method=logout" class="
+                    text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Logout</a>';
+                } else {
+                    echo '<a href="' . Helper::pages('auth/login.auth.php') . '" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Login</a>';
+                }
+                ?>
             </div>
         </div>
     </nav>

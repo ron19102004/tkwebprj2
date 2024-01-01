@@ -14,7 +14,7 @@
     <main>
         <div>
             <section class="min-h-screen flex items-stretch text-white ">
-                <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center" style="background-image: url(<?php Helper::assets('bicycle-bg.jpg'); ?>);">
+                <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center" style="background-image: url(<?php echo Helper::assets('bicycle-bg.jpg'); ?>);">
                     <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                     <div class="w-full px-24 z-10">
                         <h1 class="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0" style="background-color: #161616;">
-                    <div class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center" style="background-image: url(<?php Helper::assets('bicycle-bg.jpg'); ?>);">
+                    <div class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center" style="background-image: url(<?php echo Helper::assets('bicycle-bg.jpg'); ?>);">
                         <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                     </div>
                     <div class="w-full py-6 z-20">
@@ -54,7 +54,7 @@
                         <p class="text-gray-100">
                             or use email your account
                         </p>
-                        <form action="<?php Helper::routes('auth.route.php'); ?>" method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                        <form action="<?php echo Helper::routes('auth.route.php'); ?>" method="post" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                             <input type="text" hidden name="method" value="login">
                             <div class="pb-2 pt-4">
                                 <input type="email" name="email" id="email" placeholder="Email" class="block w-full p-4 text-lg rounded-sm bg-black">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="text-center text-gray-400  hover:text-gray-100">
                                 <span>Bạn chưa có tài khoản? </span>
-                                <a href="<?php Helper::pages('auth/register.auth.php') ?>" class="hover:underline">Đăng ký ngay</a>
+                                <a href="<?php echo Helper::pages('auth/register.auth.php') ?>" class="hover:underline">Đăng ký ngay</a>
                             </div>
                             <div class="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">
                                 <a href="#">

@@ -11,34 +11,49 @@ class Helper
     public static function assets($path)
     {
         $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/assets/';
-        echo $baseUrl . $path;
         return $baseUrl . $path;
     }
     public static function pages($path)
     {
         $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/pages/';
-        echo $baseUrl . $path;
         return $baseUrl . $path;
     }
     public static function errors($fileName)
     {
-        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/errors';
-        echo $baseUrl . $fileName;
+        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/errors/';
         return $baseUrl . $fileName;
     }
     public static function routes($path)
     {
         $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/routes/';
-        echo $baseUrl . $path;
         return $baseUrl . $path;
     }
-    public static function redirect($url){
+    public static function redirect($url)
+    {
         header('Location: ' . $url);
     }
-    public function to($url){
+    public static function addLayout($path)
+    {
+        require($_SERVER['DOCUMENT_ROOT'] . "/src/views/layouts/" . $path);
+    }
+    public static function addPage($path)
+    {
+        require($_SERVER['DOCUMENT_ROOT'] . "/src/views/pages/" . $path);
+    }
+    public static function addAdminComponent($name)
+    {
+        require($_SERVER['DOCUMENT_ROOT'] . "/src/views/pages/admin/components/" . $name);
+    }
+    public static function addComponent($name)
+    {
+        require($_SERVER['DOCUMENT_ROOT'] . "/src/views/pages/components/" . $name);
+    }
+    public function to($url)
+    {
         header('Location: ' . $url);
     }
-    public static function toast($status, $message){
+    public static function toast($status, $message)
+    {
         $toast = [
             "status" => $status,
             "message" => $message

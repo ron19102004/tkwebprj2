@@ -3,16 +3,16 @@ require($_SERVER['DOCUMENT_ROOT'] . "/src/utils/enum.util.php");
 
 class AdminGuard
 {
-    public static function run($callback)
+    public static function run($callback = null)
     {
         if (isset($_SESSION['role']) == null) {
-            echo 'to login';
-            return;
+            Helper::redirect(Helper::pages('auth/login.auth.php'));
         }
         if ($_SESSION['role'] == Role::USER) {
-            echo 'page 403';
-            return;
+            Helper::redirect(Helper::errors('forbidden.php'));
         }
-        $callback();
+        if ($callback != null) {
+            $callback();
+        }
     }
 }
