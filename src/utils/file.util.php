@@ -3,7 +3,7 @@ class FileHandler
 {
     public static function deleteFile($filePath)
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/' . $filePath;
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/src/' . $filePath;
         if (file_exists($path)) {
             unlink($path);
             return [
@@ -19,7 +19,7 @@ class FileHandler
             ];
         }
     }
-    public static function upload($file,$upload_on = 'src/views/assets/')
+    public static function upload($file,$upload_on = 'views/assets/')
     {
         if ($file['error'] !== UPLOAD_ERR_OK) {
             return [
@@ -40,7 +40,7 @@ class FileHandler
                 "data" => null
             ];
         }
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . "/".$upload_on;
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . "/src/".$upload_on;
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }

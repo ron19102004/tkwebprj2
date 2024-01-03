@@ -31,7 +31,7 @@ class AuthController
         } catch (ValidateException $th) {
             Helper::toast('error', $th->getMessage())->to(Helper::pages('auth/register.auth.php'));
         } catch (CustomException $th) {
-            Helper::toast('error', $th->getMessage())->to(Helper::pages('auth/register.auth.php'));
+            Helper::toast('error', $th->getMessage())->to(Helper::pages('auth/login.auth.php'));
         }
     }
 

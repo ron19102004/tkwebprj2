@@ -7,7 +7,7 @@ class Size
     public $deleted;
 
     const ENTITY_NAME = 'sizes';
-    const FILLABLE = 'name, value';
+    const FILLABLE = 'name, value,id,deleted';
 
     public function import_form($name, $value)
     {

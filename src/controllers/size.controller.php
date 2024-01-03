@@ -1,15 +1,15 @@
 <?php
-class ColorController
+class SizeController
 {
-    private $colorService;
+    private $sizeService;
 
     public function __construct()
     {
-        $this->colorService = new ColorService();
+        $this->sizeService = new SizeService();
     }
     public function index()
     {
-        $colors = $this->colorService->findAll();
+        $colors = $this->sizeService->findAll();
         echo json_encode($colors);
     }
 
@@ -18,23 +18,23 @@ class ColorController
         try {
             $color = new Color();
             $color->import_form(Validator::validate('name'), Validator::validate('value'));
-            $this->colorService->save($color);
+            $this->sizeService->save($color);
             echo json_encode([
                 "status" => "success",
                 "message" => "Thêm thành công",
-                "data" => null
+                "data"=> null
             ]);
-        } catch (ValidateException $th) {
+        }  catch (ValidateException $th) {
             echo json_encode([
                 "status" => "error",
                 "message" => $th->getMessage(),
-                "data" => null
+                "data"=> null
             ]);
         } catch (CustomException $th) {
             echo json_encode([
                 "status" => "error",
                 "message" => $th->getMessage(),
-                "data" => null
+                "data"=> null
             ]);
         }
     }
@@ -42,15 +42,15 @@ class ColorController
     public function edit()
     {
         try {
-            $res = $this->colorService->findById(Validator::validate('id'));
+            $res = $this->sizeService->findById(Validator::validate('id'));
             if ($res == null) {
                 Helper::toast('error', 'Không tìm thấy thực thể')->to(Helper::pages('admin/color-size.php'));
                 return;
             }
-            $color = new Color();
-            $color->importDb($res);
-            $color->import_form(Validator::validate('name'), Validator::validate('value'));
-            $this->colorService->update($color);
+            $size = new Size();
+            $size->importDb($res);
+            $size->import_form(Validator::validate('name'), Validator::validate('value'));
+            $this->sizeService->update($size);
             Helper::toast('success', 'Cập nhật thành công')->to(Helper::pages('admin/color-size.php'));
         } catch (ValidateException $th) {
             Helper::toast('error', $th->getMessage())->to(Helper::pages('admin/color-size.php'));
@@ -61,13 +61,13 @@ class ColorController
     public function findById()
     {
         try {
-            $res = $this->colorService->findById(Validator::validate('id'));
-            $color = new Color();
-            $color->importDb($res);
+            $res = $this->sizeService->findById(Validator::validate('id'));
+            $size = new Size();
+            $size->importDb($res);
             echo json_encode([
                 "status" => "success",
                 "message" => "Truy xuất thành công",
-                "data" => $color->toArray()
+                "data" => $size->toArray()
             ]);
         } catch (ValidateException $th) {
             echo json_encode([
@@ -83,27 +83,29 @@ class ColorController
             ]);
         }
     }
+
     public function delete()
     {
         try {
-            $this->colorService->delete(Validator::validate('id'));
+            $this->sizeService->delete(Validator::validate('id'));
             echo json_encode([
                 "status" => "success",
                 "message" => "Xóa thành công",
-                "data" => null
+                "data"=> null
             ]);
-        } catch (ValidateException $th) {
+        }  catch (ValidateException $th) {
             echo json_encode([
                 "status" => "error",
                 "message" => $th->getMessage(),
-                "data" => null
+                "data"=> null
             ]);
         } catch (CustomException $th) {
             echo json_encode([
                 "status" => "error",
                 "message" => $th->getMessage(),
-                "data" => null
+                "data"=> null
             ]);
         }
+
     }
 }

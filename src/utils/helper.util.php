@@ -8,24 +8,24 @@ class Helper
         $phpArray = json_decode($jsonString, true);
         return $phpArray[$value];
     }
-    public static function assets($path)
+    public static function assets($path = "")
     {
-        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/assets/';
+        $baseUrl = self::env('http') .'/src/views/assets/';
         return $baseUrl . $path;
     }
     public static function pages($path)
     {
-        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/pages/';
+        $baseUrl = self::env('http') .'/src/views/pages/';
         return $baseUrl . $path;
     }
     public static function errors($fileName)
     {
-        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/views/errors/';
+        $baseUrl = self::env('http') .'/src/views/errors/';
         return $baseUrl . $fileName;
     }
     public static function routes($path)
     {
-        $baseUrl = self::env('http') . "://" . $_SERVER['HTTP_HOST'] . '/src/routes/';
+        $baseUrl = self::env('http') .'/src/routes/';
         return $baseUrl . $path;
     }
     public static function redirect($url)

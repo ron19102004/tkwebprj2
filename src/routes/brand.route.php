@@ -1,42 +1,43 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . "/src/controllers/color.controller.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/src/controllers/brand.controller.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/src/middlewares/admin.guard.php");
-require($_SERVER['DOCUMENT_ROOT'] . "/src/services/color.service.php");
-require($_SERVER['DOCUMENT_ROOT'] . "/src/entities/color.entity.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/src/services/brand.service.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/src/entities/brand.entity.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/src/configs/db/repository.db.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/src/utils/file.util.php");
 session_start();
-class ColorRoute
+class BrandRoute
 {
-    private $colorController;
+    private $brandController;
     public function __construct()
     {
-        $this->colorController = new ColorController();
+        $this->brandController = new BrandController();
     }
     public  function act($method_req)
     {
         if ($method_req == MethodRequest::POST) {
             if (Validator::validate('method') && Validator::validate('method') == 'add') {
-                AdminGuard::run($this->colorController->add());
+                AdminGuard::run($this->brandController->add());
                 return;
             }
             if (Validator::validate('method') && Validator::validate('method') == 'edit') {
-                AdminGuard::run($this->colorController->edit());
+                AdminGuard::run($this->brandController->edit());
                 return;
             }
             return;
         }
         if (Validator::validate('method') && Validator::validate('method') == 'getAll') {
-            $this->colorController->index();
+            $this->brandController->index();
             return;
         }
         if (Validator::validate('method') && Validator::validate('method') == 'findById') {
-            $this->colorController->findById();
+            $this->brandController->findById();
             return;
         }
         if (Validator::validate('method') && Validator::validate('method') == 'delete') {
-            AdminGuard::run($this->colorController->delete());
+            AdminGuard::run($this->brandController->delete());
             return;
         }
     }
 }
-(new ColorRoute())->act($_SERVER['REQUEST_METHOD']);
+(new BrandRoute())->act($_SERVER['REQUEST_METHOD']);

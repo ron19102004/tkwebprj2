@@ -9,7 +9,7 @@ class ProductImage {
     const ENTITY_NAME = 'products_images';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'image, deleted, id_product, id';
+    const FILLABLE = 'products_images.image, products_images.deleted, products_images.id_product, products_images.id';
 
 
     // Chuyển đối đối tượng thành mảng
@@ -26,7 +26,6 @@ class ProductImage {
     public function toArraySave() {
         return [
             'image' => $this->image,
-            'deleted' => $this->deleted,
             'id_product' => $this->id_product,
         ];
     }

@@ -1,5 +1,6 @@
-<?php 
-class Product {
+<?php
+class Product
+{
     public $id;
     public $name;
     public $description;
@@ -16,10 +17,22 @@ class Product {
     const ENTITY_NAME = 'products';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'name, description, warranty_policy, price, discount, discount_start, discount_end, id_brand, id_category, id, deleted';
+    const FILLABLE = '
+    products.name, 
+    products.description, 
+    products.warranty_policy, 
+    products.price, 
+    products.discount, 
+    products.discount_start, 
+    products.discount_end, 
+    products.id_brand, 
+    products.id_category, 
+    products.id, 
+    products.deleted';
 
     // Chuyển đối đối tượng thành mảng
-    public function toArray() {
+    public function toArray()
+    {
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -36,7 +49,8 @@ class Product {
     }
 
     // Chuyển đối đối tượng thành mảng để lưu vào cơ sở dữ liệu
-    public function toArraySave() {
+    public function toArraySave()
+    {
         return [
             'name' => $this->name,
             'description' => $this->description,
@@ -52,7 +66,8 @@ class Product {
     }
 
     // Chuyển đối đối tượng thành mảng để cập nhật vào cơ sở dữ liệu
-    public function toArrayUpdate() {
+    public function toArrayUpdate()
+    {
         return [
             'name' => $this->name,
             'description' => $this->description,
@@ -67,7 +82,8 @@ class Product {
     }
 
     // Hàm import từ mảng giống như constructor
-    public function importDb($data) {
+    public function importDb($data)
+    {
         $this->id = $data['id'];
         $this->name = $data['name'];
         $this->description = $data['description'];

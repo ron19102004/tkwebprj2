@@ -9,7 +9,7 @@ class ProductSize {
     const ENTITY_NAME = 'products_sizes';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'deleted, id_size, id_product, id';
+    const FILLABLE = 'products_sizes.deleted, id_size, id_product, products_sizes.id';
 
 
     // Chuyển đối đối tượng thành mảng

@@ -5,11 +5,10 @@ require($_SERVER['DOCUMENT_ROOT'] . "/src/utils/validator.utils.php");
 class DB
 {
     private static $connect = null;
-    private static $query = '';
+    public static $query = '';
     private static $arrayValueParam = [];
     public static function getConnection()
     {
-
         $selfAttr = Helper::env('db');
         $host = $selfAttr['host'] ?? 'localhost';
         $port = $selfAttr['port'] ?? 3306;
@@ -123,6 +122,7 @@ class DB
         } catch (PDOException $e) {
             DB::close();
             DB::$query = '';
+            var_dump($e);
             throw new CustomException($e->getMessage(), $e->getCode(), $e);
         } finally {
             DB::$query = '';
@@ -155,16 +155,18 @@ class DB
         DB::$query = DB::$query . ' HAVING ' . $having;
         return $this;
     }
-    public  function andWhere($condition, $operator, $value)
+    public  function andWhere($condition, $operator, $value, $param = null)
     {
-        DB::$query = DB::$query . ' AND ' . $condition . $operator . ':' . $condition;
-        array_push(DB::$arrayValueParam, ["index" => $condition, "value" => $value]);
+        $param = $param ?? $condition;
+        DB::$query = DB::$query . ' AND ' . $condition . $operator . ':' . $param;
+        array_push(DB::$arrayValueParam, ["index" => $param, "value" => $value]);
         return $this;
     }
-    public  function where($condition, $operator, $value)
+    public  function where($condition, $operator, $value, $param = null)
     {
-        DB::$query = DB::$query . ' WHERE ' . $condition . $operator . ':' . $condition;
-        array_push(DB::$arrayValueParam, ["index" => $condition, "value" => $value]);
+        $param = $param ?? $condition; 
+        DB::$query = DB::$query . ' WHERE ' . $condition . $operator . ':' . $param;
+        array_push(DB::$arrayValueParam, ["index" => $param, "value" => $value]);
         return $this;
     }
     public function join($table,  $condition)
@@ -184,7 +186,7 @@ class DB
     }
     public static function update($table)
     {
-        DB::$query = 'UPDATE FROM ' . $table;
+        DB::$query = 'UPDATE ' . $table;
         return new self();
     }
     public function set($attr, $value)
@@ -239,7 +241,7 @@ class DB
             }
             $attr = $attr . ' , ' . $keys[$i] . '=:' . $keys[$i];
         }
-        self::$query = 'UPDATE FROM ' . $table . 'SET ' . $attr . ' WHERE id = :id';
+        self::$query = ' UPDATE ' . $table . ' SET ' . $attr . ' WHERE id = :id';
         $arrayParam = [];
         array_push($arrayParam, ["index" => 'id', "value" => $id]);
         for ($i = 0; $i < count($values); $i++) {

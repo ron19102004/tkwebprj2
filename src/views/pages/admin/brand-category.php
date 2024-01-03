@@ -14,10 +14,10 @@
     <main class="p-3 space-y-3">
         <?php 
         if(isset($_GET['edit']) && isset($_GET['id'])){
-            Helper::addAdminComponent('color-size/edit.php'); 
+            Helper::addAdminComponent('brand-category/edit.php'); 
         } else {
-            Helper::addAdminComponent('color-size/color.php');
-            Helper::addAdminComponent('color-size/size.php'); 
+            Helper::addAdminComponent('brand-category/brand.php');
+            Helper::addAdminComponent('brand-category/category.php'); 
         }
         ?>
     </main>

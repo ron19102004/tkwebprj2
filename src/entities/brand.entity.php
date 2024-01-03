@@ -24,7 +24,6 @@ class Brand
         return [
             'name' => $this->name,
             'avatar' => $this->avatar,
-            'deleted' => $this->deleted,
         ];
     }
 

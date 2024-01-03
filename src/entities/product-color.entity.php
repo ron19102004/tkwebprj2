@@ -2,14 +2,14 @@
 class ProductColor {
     public $id;
     public $deleted;
-    public $idColor;
+    public $id_color;
     public $id_product;
 
     // Thuộc tính mẫu cho tên bảng
     const ENTITY_NAME = 'products_colors';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'deleted, idColor, id_product, id';
+    const FILLABLE = 'products_colors.deleted, id_color, id_product, products_colors.id';
 
 
 
@@ -18,7 +18,7 @@ class ProductColor {
         return [
             'id' => $this->id,
             'deleted' => $this->deleted,
-            'idColor' => $this->idColor,
+            'id_color' => $this->id_color,
             'id_product' => $this->id_product,
         ];
     }
@@ -27,7 +27,7 @@ class ProductColor {
     public function toArraySave() {
         return [
             'deleted' => $this->deleted,
-            'idColor' => $this->idColor,
+            'id_color' => $this->id_color,
             'id_product' => $this->id_product,
         ];
     }
@@ -43,7 +43,7 @@ class ProductColor {
     public function importDb($data) {
         $this->id = $data['id'];
         $this->deleted = $data['deleted'];
-        $this->idColor = $data['idColor'];
+        $this->id_color = $data['id_color'];
         $this->id_product = $data['id_product'];
     }
 }
