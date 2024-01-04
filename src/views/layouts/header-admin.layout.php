@@ -49,15 +49,12 @@ Helper::addComponent('toast.component.php');
                             <li>
                                 <a href="<?php echo Helper::pages('admin/brand-category.php'); ?>" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Thương hiệu - Loại</a>
                             </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Sign out</a>
-                            </li>
                         </ul>
                     </div>
 
                     <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Mã giảm giá</a>
                     <a href="<?php echo Helper::routes('auth.route.php'); ?>/?method=logout" class="
-                    text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Logout</a>
+                    text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Đăng xuất</a>
                 </div>
             </span>
         </div>

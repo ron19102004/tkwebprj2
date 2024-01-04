@@ -201,10 +201,9 @@ class DB
         array_push(DB::$arrayValueParam, ["index" => $attr, "value" => $value]);
         return $this;
     }
-    public static function delete($table, $id)
+    public static function delete($table)
     {
-        self::$query = 'DELETE FROM ' . $table . ' WHERE id=:id';
-        array_push(self::$arrayValueParam, ["index" => 'id', "value" => $id]);
+        self::$query = 'DELETE FROM ' . $table;
         return new self();
     }
     public static function save($table, array $values)

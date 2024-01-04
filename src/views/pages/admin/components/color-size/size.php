@@ -118,7 +118,7 @@
                     const sizes = JSON.parse(data);
                     $('#data-size').html(sizes.map((size) => {
                         return `
-                            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <tr class="bg-gray-100 border border-grey-500 md:border-none block md:table-row">
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mã kích thước</span>${size?.id}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tên kích thước</span>${size?.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Giá trị</span>${size?.value}</td>

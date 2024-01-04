@@ -4,6 +4,8 @@ if (isset($_GET['id'])) {
 }
 ?>
 <input type="text" hidden id="url_product" value="<?php echo Helper::routes('product.route.php'); ?>">
+<input type="text" hidden id="url_sys" value="<?php echo Helper::env('http'); ?>">
+
 <section class="space-y-2">
     <div class="bg-indigo-700 text-indigo-200 md:text-center py-2 px-4" id="brand-intro">
     </div>
@@ -104,6 +106,7 @@ if (isset($_GET['id'])) {
     }
     const url_product = document.getElementById('url_product').value
     const id_product = document.getElementById('id_product').value
+    const url_sys = document.getElementById('url_sys').value
     var data$ = [];
     const renderDetails = () => {
         $(() => {
@@ -151,7 +154,7 @@ if (isset($_GET['id'])) {
                             const percent = (parseInt(data?.product?.discount) * 100) / parseInt(data?.product?.price)
                             $('#price-product').removeClass('text-indigo-600')
                             $('#price-product').addClass('text-red-500')
-                            $('#save-text').text(`Tiết kiệm ${100-percent}%`)
+                            $('#save-text').text(`Tiết kiệm ${(100-percent).toFixed(2)}%`)
                         }
                         $('#price-product-old').text(
                             parseInt(data?.product?.discount) > 0 ? convertCurrencyFormat(`${data?.product?.price}000VNĐ`) : ''
@@ -183,7 +186,7 @@ if (isset($_GET['id'])) {
                         }))
                     }
                 } catch (error) {
-
+                    window.location.href =url_sys+"/src/views/errors/not-found.php"
                 }
             })
         })

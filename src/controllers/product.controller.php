@@ -153,6 +153,7 @@ class ProductController
                 ->join('categories', 'categories.id=' . Product::ENTITY_NAME . '.id_category')
                 ->join('brands', 'brands.id=products.id_brand')
                 ->where('products.id', '=', $id, 'id')
+                ->andWhere('products.deleted', '=', "FALSE", "deleted")
                 ->getOne();
             $data_colors_products = DB::select(ProductColor::FILLABLE . ',colors.name,colors.value')
                 ->from(ProductColor::ENTITY_NAME)
@@ -197,10 +198,10 @@ class ProductController
     public function index()
     {
         try {
-            $data = DB::select(Product::FILLABLE . ',brands.name as brand_name,categories.name as category_name')
+            $data = DB::select(Product::FILLABLE)
                 ->from(Product::ENTITY_NAME)
-                ->join('categories', 'categories.id=' . Product::ENTITY_NAME . '.id_category')
-                ->join('brands', 'brands.id=products.id_brand')->getMany();
+                ->where('deleted', '=', "FALSE", "deleted")
+                ->getMany();
             echo json_encode([
                 "status" => "success",
                 "message" => "Truy xuất thành công",
@@ -224,24 +225,17 @@ class ProductController
     public function add()
     {
         try {
-
-            echo json_encode([
-                "status" => "success",
-                "message" => "Thêm thành công",
-                "data" => null
-            ]);
+            DB::save("products", [
+                "name" => Validator::validate('name'),
+                "price" => Validator::validate("price"),
+                "id_brand" => Validator::validate('id_brand'),
+                "id_category"=>Validator::validate("id_category")
+            ])->execute();
+            Helper::toast('success', 'Khởi tạo thành công')->to(Helper::pages('admin/product.php'));
         } catch (ValidateException $th) {
-            echo json_encode([
-                "status" => "error",
-                "message" => $th->getMessage(),
-                "data" => null
-            ]);
+            Helper::toast('error', $th->getMessage())->to(Helper::pages('admin/product.php'));
         } catch (CustomException $th) {
-            echo json_encode([
-                "status" => "error",
-                "message" => $th->getMessage(),
-                "data" => null
-            ]);
+            Helper::toast('error', $th->getMessage())->to(Helper::pages('admin/product.php'));
         }
     }
 
@@ -282,6 +276,11 @@ class ProductController
     public function delete()
     {
         try {
+            $data = $this->productService->findById(Validator::validate('id'));
+            $pro = new Product();
+            $pro->importDb($data);
+            $pro->deleted = true;
+            $this->productService->update($pro);
             echo json_encode([
                 "status" => "success",
                 "message" => "Xóa thành công",

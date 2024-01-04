@@ -78,6 +78,7 @@ class Product
             'discount_end' => $this->discount_end,
             'id_brand' => $this->id_brand,
             'id_category' => $this->id_category,
+            'deleted' => $this->deleted,
         ];
     }
 

@@ -118,7 +118,7 @@
                     const colors = JSON.parse(data);
                     $('#data').html(colors.map((color) => {
                         return `
-                            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <tr class="bg-gray-100 border border-grey-500 md:border-none block md:table-row">
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mã màu</span>${color?.id}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tên màu</span>${color?.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Giá trị</span>${color?.value}</td>

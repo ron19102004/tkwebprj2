@@ -26,7 +26,6 @@ class ProductColor {
     // Chuyển đối đối tượng thành mảng để lưu vào cơ sở dữ liệu
     public function toArraySave() {
         return [
-            'deleted' => $this->deleted,
             'id_color' => $this->id_color,
             'id_product' => $this->id_product,
         ];

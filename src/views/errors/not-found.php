@@ -93,21 +93,14 @@
             <p class="p-a">
                 . The page you were looking for could not be found</p>
             <p class="p-b">
-                ... Back to previous page
+                ... Back to home
             </p>
-            <a href='#' id="back" class="back">... Back to previous page</a>
+            <a href='/' id="back" class="back">... Back to home</a>
         </div>
     </div>
 
 
 
 </body>
-<script>
-    $(() => {
-        $('#back').click(() => {
-            window.history.back();
-        })
-    })
-</script>
 
 </html>

@@ -37,7 +37,9 @@ class Repository
     }
     public  function delete($id)
     {
-        return DB::delete($this->entity_name, $id)->execute();
+        return DB::delete($this->entity_name)
+            ->where('id', '=', $id)
+            ->execute();
     }
     public  function update($entity)
     {

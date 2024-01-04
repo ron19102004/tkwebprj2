@@ -87,7 +87,7 @@
                     const brands = JSON.parse(data);
                     $('#data').html(brands.map((brand) => {
                         return `
-                            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <tr class="bg-gray-100 border border-grey-500 md:border-none block md:table-row">
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mã thương hiệu</span>${brand?.id}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tên thương hiệu</span>${brand?.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">AVT/LOGO</span>
@@ -97,7 +97,7 @@
                                         >
                                     </div>
                                 </td>
-                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell md:flex md:flex-col md:justify-center md:items-center md:space-y-3">
                                     <span class="inline-block w-1/3 md:hidden font-bold">Chức năng</span>
                                     <a href="?edit=brand&id=${brand?.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Sửa</a>
                                     <button onclick="remove(${brand?.id});" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Xóa</button>
