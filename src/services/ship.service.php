@@ -8,7 +8,13 @@ class ShipService
     {
         $this->repository = new Repository(Ship::ENTITY_NAME, Ship::FILLABLE);
     }
-
+    public function findByIdUser($id)
+    {
+        return $this->repository->find()
+            ->where('id_user', "=", $id)
+            ->andWhere('deleted', "=", "FALSE")
+            ->getMany();
+    }
     public function save($entity)
     {
         $this->repository->save($entity);
@@ -24,9 +30,13 @@ class ShipService
         $this->repository->delete($entity_id);
     }
 
-    public function findAll()
+    public function findAll($id)
     {
-        return $this->repository->findAll();
+
+        return $this->repository->find()
+            ->where('id_user', "=", $id)
+            ->andWhere('deleted', "=", "FALSE")
+            ->getMany();
     }
 
     public function findById($entity_id)

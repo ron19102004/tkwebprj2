@@ -1,5 +1,5 @@
 <section>
-    <h1>Thể loại/danh mục</h1>
+    <h1 class="font-bold text-xl">Thể loại/danh mục</h1>
     <div>
         <!-- Modal toggle -->
 

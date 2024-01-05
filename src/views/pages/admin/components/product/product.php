@@ -2,7 +2,7 @@
 <input type="text" hidden id="url_category" value="<?php echo Helper::routes('category.route.php'); ?>">
 
 <section>
-    <h1>Sản phẩm</h1>
+    <h1 class="font-bold text-xl">Sản phẩm</h1>
     <div>
         <!-- Modal toggle -->
 
@@ -64,6 +64,7 @@
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mã sản phẩm</th>
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tên sản phẩm</th>
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giá sản phẩm</th>
+                <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Số lượng có sẵn</th>
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giảm giá</th>
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mô tả</th>
                 <th class="bg-gray-800 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Chính sách bảo hành</th>
@@ -141,10 +142,11 @@
                     const products = res?.data;
                     $('#data').html(products.map((p) => {
                         return `
-                            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <tr class="bg-gray-100 border border-grey-500 md:border-none block md:table-row">
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mã sản phẩm</span>${p?.id}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tên sản phẩm</span>${p?.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Giá sản phẩm</span>${p?.price}</td>
+                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Số lượng sẵn</span>${p?.available}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Giảm giá</span>
                                     ${p?.discount}
                                 </td>
@@ -158,9 +160,9 @@
                                             ${p?.warranty_policy}
                                      </div>   
                                 </td>
-                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell md:flex md:flex-col md:justify-center md:items-center md:space-y-3">
+                                <td class="md:border md:border-grey-500 text-left block md:table-cell md:flex md:flex-col md:justify-center md:items-center md:space-y-3">
                                     <span class="inline-block w-1/3 md:hidden font-bold">Chức năng</span>
-                                    <a href="?id=${p?.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Sửa</a>
+                                    <a href="?id=${p?.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 border border-blue-500 rounded">Chi tiết</a>
                                     <button onclick="remove(${p?.id});" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Xóa</button>
                                 </td>
                             </tr>

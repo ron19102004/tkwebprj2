@@ -40,6 +40,10 @@ class ProductRoute
                 AdminGuard::run($this->productController->changeWPolicy());
                 return;
             }
+            if (Validator::validate('method') && Validator::validate('method') == 'changeAvatar') {
+                AdminGuard::run($this->productController->changeAvatar());
+                return;
+            }
             if (Validator::validate('method') && Validator::validate('method') == 'add') {
                 AdminGuard::run($this->productController->add());
                 return;
@@ -52,6 +56,10 @@ class ProductRoute
         }
         if (Validator::validate('method') && Validator::validate('method') == 'getAll') {
             $this->productController->index();
+            return;
+        }
+        if (Validator::validate('method') && Validator::validate('method') == 'getTakeSkip') {
+            $this->productController->findByTakeSkip();
             return;
         }
         if (Validator::validate('method') && Validator::validate('method') == 'details') {

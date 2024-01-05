@@ -132,7 +132,9 @@ class DB
     }
     public function getOne()
     {
-        return $this->getMany()[0];
+        $data = $this->getMany();
+        if($data) return $data[0];
+        return null;
     }
     public  function groupBy($byGroup)
     {

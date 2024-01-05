@@ -26,7 +26,6 @@ class Progress {
     // Chuyển đối đối tượng thành mảng để lưu vào cơ sở dữ liệu
     public function toArraySave() {
         return [
-            'time' => $this->time,
             'content' => $this->content,
             'id_order' => $this->id_order,
         ];

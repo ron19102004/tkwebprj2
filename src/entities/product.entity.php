@@ -12,6 +12,8 @@ class Product
     public $id_brand;
     public $id_category;
     public $deleted;
+    public $available;
+    public $avatar;
 
     // Thuộc tính mẫu cho tên bảng
     const ENTITY_NAME = 'products';
@@ -28,7 +30,9 @@ class Product
     products.id_brand, 
     products.id_category, 
     products.id, 
-    products.deleted';
+    products.deleted,
+    products.available,
+    products.avatar';
 
     // Chuyển đối đối tượng thành mảng
     public function toArray()
@@ -45,6 +49,8 @@ class Product
             'id_brand' => $this->id_brand,
             'id_category' => $this->id_category,
             'deleted' => $this->deleted,
+            'available'=> $this->available,
+            'avatar' => $this->avatar,
         ];
     }
 
@@ -79,6 +85,8 @@ class Product
             'id_brand' => $this->id_brand,
             'id_category' => $this->id_category,
             'deleted' => $this->deleted,
+            'available'=> $this->available,
+            'avatar' => $this->avatar,
         ];
     }
 
@@ -96,5 +104,7 @@ class Product
         $this->id_brand = $data['id_brand'];
         $this->id_category = $data['id_category'];
         $this->deleted = $data['deleted'];
+        $this->available = $data['available'];
+        $this->avatar = $data['avatar'];
     }
 }

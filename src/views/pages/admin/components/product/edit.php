@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     <div>
         <!-- Modal toggle -->
 
-        <button data-modal-target="default-modal-size" data-modal-toggle="default-modal-size" type="button" class=" py-2.5 px-5 me-2 mb-2 text-sm font-medium focus:outline-none text-white rounded-lg border bg-indigo-700  hover:bg-red-700  focus:z-10 focus:ring-4 focus:ring-gray-200 ">Thêm kích thuớc</button>
+        <button data-modal-target="default-modal-size" data-modal-toggle="default-modal-size" type="button" class=" py-2.5 px-5 me-2 mb-2 text-sm font-medium focus:outline-none text-white rounded-lg border bg-gray-800   hover:bg-red-700  focus:z-10 focus:ring-4 focus:ring-gray-200 ">Thêm kích thuớc</button>
 
         <!-- Main modal -->
         <div id="default-modal-size" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
-                            <button id="addSize"type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Thêm</button>
+                            <button id="addSize" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Thêm</button>
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,10 @@ if (isset($_GET['id'])) {
     <table class="min-w-full border-collapse block md:table max-h-screen overflow-auto">
         <thead class="block md:table-header-group">
             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mã kích thước</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tên kích thước</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giá trị</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Chức năng</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mã kích thước</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tên kích thước</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giá trị</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Chức năng</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group" id="data-size-product">
@@ -70,7 +70,7 @@ if (isset($_GET['id'])) {
     <div>
         <!-- Modal toggle -->
 
-        <button data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium tfocus:outline-none text-white rounded-lg border hover:bg-red-700 bg-indigo-700  focus:z-10 focus:ring-4 focus:ring-gray-200">Thêm màu sắc</button>
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium tfocus:outline-none text-white rounded-lg border hover:bg-red-700 bg-gray-800   focus:z-10 focus:ring-4 focus:ring-gray-200">Thêm màu sắc</button>
 
         <!-- Main modal -->
         <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -100,7 +100,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
-                            <button id="addColor"type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Thêm</button>
+                            <button id="addColor" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Thêm</button>
                         </div>
                     </div>
                 </div>
@@ -110,10 +110,10 @@ if (isset($_GET['id'])) {
     <table class="min-w-full border-collapse block md:table max-h-screen overflow-auto">
         <thead class="block md:table-header-group">
             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mã màu</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tên màu</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giá trị</th>
-                <th class="bg-indigo-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Chức năng</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mã màu</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tên màu</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Giá trị</th>
+                <th class="bg-gray-800  p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Chức năng</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group" id="data-color-product">
@@ -327,6 +327,36 @@ if (isset($_GET['id'])) {
             })
         })
     }
+    const setDefaultAvatar = (avatar) => {
+        $(() => {
+            $.post(url_product, {
+                method: "changeAvatar",
+                id: id_product,
+                avatar: avatar
+            }, (data) => {
+                try {
+                    const res = JSON.parse(data);
+                    if (res.status === 'success') {
+                        $.toast({
+                            heading: 'Success',
+                            text: res.message,
+                            showHideTransition: 'fade',
+                            icon: 'success'
+                        })
+                        return;
+                    }
+                    $.toast({
+                        heading: 'Error',
+                        text: res.message,
+                        showHideTransition: 'fade',
+                        icon: 'error'
+                    })
+                } catch (error) {
+
+                }
+            })
+        })
+    }
     const renderDetails = () => {
         $(() => {
             $.get(url_size, {
@@ -337,7 +367,7 @@ if (isset($_GET['id'])) {
                     let html = `<option selected>Chọn kích thước</option>`;
                     html += colors.map((item) => {
                         return `<option value="${item?.id}">
-                                    ${item?.name}
+                                    ${item?.name}-${item?.value}
                                 </option>`
                     }).join('')
                     $('#sizes').html(html)
@@ -380,7 +410,6 @@ if (isset($_GET['id'])) {
                 id: id_product
             }, (data) => {
                 try {
-                    console.log(data);
                     const res = JSON.parse(data);
                     if (res.status === 'success') {
                         const data = res.data;
@@ -429,11 +458,13 @@ if (isset($_GET['id'])) {
                                     class=" overflow-hidden object-cover w-full h-full"
                                     src="<?php echo Helper::assets(); ?>${image?.image}" alt="${image?.image}">
                                  </div>
-                                 <button onclick="deleteImageProduct(${image?.id});" type="button" class="absolute top-1 right-0 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Xóa</button>
-
+                                 <div class="absolute top-1 right-0 ">
+                                    <button onclick="setDefaultAvatar('${image?.image}');" type="button" class="text-white bg-blue-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Đặt mặc định</button>
+                                    <button onclick="deleteImageProduct(${image?.id});" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Xóa</button>
+                                 </div>
                             </div>
                             `
-                        }))
+                        }).join(''))
                         $('#list-item-image').html(data?.images?.map((image, index) => {
                             return `
                             <div class="flex-1 px-2">
@@ -446,7 +477,7 @@ if (isset($_GET['id'])) {
                                     </button>
                              </div>
                             `
-                        }))
+                        }).join(''))
                         $('#name-product').html(`
                              <input id="name-product-input" type="text" value="${data?.product?.name}"
                              class="rounded border-2 w-full"
@@ -509,7 +540,7 @@ if (isset($_GET['id'])) {
                                 </div>
                             </li>
                             `
-                        }))
+                        }).join(''))
                         $('#sizes-product').html(data?.sizes?.map((size) => {
                             return `
                             <li class="w-full border-gray-200">
@@ -520,13 +551,13 @@ if (isset($_GET['id'])) {
                                 </div>
                             </li>
                             `
-                        }))
+                        }).join(''))
                     }
                 } catch (error) {
 
                 }
             })
-            $('#addSize').click(()=>{
+            $('#addSize').click(() => {
                 $.post(url_product_size, {
                     method: "add",
                     id_size: $('#sizes').val(),
@@ -555,7 +586,7 @@ if (isset($_GET['id'])) {
                     }
                 })
             })
-            $('#addColor').click(()=>{
+            $('#addColor').click(() => {
                 $.post(url_product_color, {
                     method: "add",
                     id_color: $('#colors').val(),
@@ -642,6 +673,7 @@ if (isset($_GET['id'])) {
                 })
             })
             $('#save-description').click(() => {
+                console.log(description);
                 $.post(url_product, {
                     method: "changeDescription",
                     description: description,

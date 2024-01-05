@@ -13,6 +13,15 @@ class ProductService
     {
         $this->repository->save($entity);
     }
+    public function findTakeSkip($take,$skip)
+    {
+        return $this->repository->find()
+            ->where('deleted', '=', 'FALSE')
+            ->groupBy('id')
+            ->take($take)
+            ->skip($skip)
+            ->getMany();
+    }
 
     public function update($entity)
     {
@@ -26,7 +35,8 @@ class ProductService
 
     public function findAll()
     {
-        return $this->repository->findAll();
+        return $this->repository->find()
+            ->where('deleted', '=', 'FALSE')->getMany();
     }
 
     public function findById($entity_id)

@@ -1,10 +1,16 @@
 <?php
+$userCurrent = null;
+if (isset($_SESSION['userCurrent']))
+    $userCurrent = json_decode($_SESSION['userCurrent'], true);
 if (isset($_GET['id'])) {
     echo '<input type="text" hidden value="' . htmlspecialchars($_GET['id']) . '" id="id_product">';
 }
 ?>
+<input type="text" hidden id="id_user" value="<?php echo $userCurrent['id']; ?>">
 <input type="text" hidden id="url_product" value="<?php echo Helper::routes('product.route.php'); ?>">
 <input type="text" hidden id="url_sys" value="<?php echo Helper::env('http'); ?>">
+<input type="text" hidden id="url_cart" value="<?php echo Helper::routes('cart.route.php'); ?>">
+<input type="text" hidden id="url_login" value="<?php echo Helper::pages('auth/login.auth.php'); ?>">
 
 <section class="space-y-2">
     <div class="bg-indigo-700 text-indigo-200 md:text-center py-2 px-4" id="brand-intro">
@@ -36,6 +42,7 @@ if (isset($_GET['id'])) {
                         <p class="text-gray-400 text-sm" id="save-text"></p>
                     </div>
                 </div>
+                <p class="font-semibold italic" id="quantity"></p>
                 <div id="w-policy">
                     <h3 class="text-gray-800">Chính sách bảo hành</h3>
                     <div class="text-gray-500">
@@ -57,7 +64,7 @@ if (isset($_GET['id'])) {
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                 </svg>
                             </button>
-                            <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-14 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5  " placeholder="1" required>
+                            <input type="text" id="quantity-input" value="1" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-14 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5  " placeholder="1" required>
                             <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-14 focus:ring-gray-100  focus:ring-2 focus:outline-none">
                                 <svg class="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
@@ -66,7 +73,7 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <button type="button" class="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
+                    <button onclick="addToCart()" type="button" class="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
                         Thêm vào giỏ hàng
                     </button>
                 </div>
@@ -82,6 +89,16 @@ if (isset($_GET['id'])) {
 </section>
 <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js'></script>
 <script>
+    function getSelectedRadioValue(name) {
+        var genderRadios = document.getElementsByName(name);
+        for (var i = 0; i < genderRadios.length; i++) {
+            if (genderRadios[i].checked) {
+                return genderRadios[i].value;
+            }
+        }
+        return null;
+    }
+
     function convertCurrencyFormat(inputString) {
         // Extract the numeric part from the input string
         const numericValue = parseFloat(inputString);
@@ -104,22 +121,82 @@ if (isset($_GET['id'])) {
             return inputString;
         }
     }
+    const url_login = document.getElementById('url_login').value
     const url_product = document.getElementById('url_product').value
+    const url_cart = document.getElementById('url_cart').value
     const id_product = document.getElementById('id_product').value
+    const id_user = document.getElementById('id_user').value
     const url_sys = document.getElementById('url_sys').value
+    const addToCart = () => {
+        if (!id_user) {
+            window.location.href = url_login;
+            return;
+        }
+        const id_color = getSelectedRadioValue('list-color-product');
+        const id_size = getSelectedRadioValue('list-size-product');
+        if (!id_color || !id_size) {
+            $.toast({
+                heading: 'Error',
+                text: 'Chọn màu và kích thước',
+                showHideTransition: 'fade',
+                icon: 'error'
+            })
+            return;
+        }
+        $.post(url_cart, {
+            method: "add",
+            id_product: id_product,
+            id_color: id_color,
+            id_size: id_size,
+            id_user: id_user,
+            quantity: $('#quantity-input').val()
+        }, (data) => {
+            try {
+                const res = JSON.parse(data);
+                if (res.status === 'success') {
+                    $.toast({
+                        heading: 'Success',
+                        text: res.message,
+                        showHideTransition: 'fade',
+                        icon: 'success'
+                    })
+                    return;
+                }
+                $.toast({
+                    heading: 'Error',
+                    text: res.message,
+                    showHideTransition: 'fade',
+                    icon: 'error'
+                })
+            } catch (error) {
+
+            }
+        })
+    }
     var data$ = [];
+    var available = 0;
     const renderDetails = () => {
         $(() => {
+            $('#decrement-button').click(() => {
+                if ($('#quantity-input').val() <= 0) {
+                    $('#quantity-input').val(available > 0 ? 1 : 0)
+                }
+            })
+            $('#increment-button').click(() => {
+                if ($('#quantity-input').val() >= available) {
+                    $('#quantity-input').val(available)
+                }
+            })
             $.get(url_product, {
                 method: "details",
                 id: id_product
-            }, (data) => {
+            }, (dataR) => {
                 try {
-                    const res = JSON.parse(data);
+                    const res = JSON.parse(dataR);
                     if (res.status === 'success') {
                         const data = res.data;
                         data$ = data;
-                        console.log(data);
+                        available = data?.product?.available
                         $('#brand-intro').text(`Sản phẩm đến từ nhà ${data?.product?.brand_name}`)
                         $('#list-image').html(data?.images?.map((image, index) => {
                             return `
@@ -146,6 +223,7 @@ if (isset($_GET['id'])) {
                             `
                         }))
                         $('#name-product').text(data?.product?.name)
+                        $('#quantity').text("Số lượng sẵn " + data?.product?.available + " chiếc")
                         $('#brand-name').text(data?.product?.brand_name)
                         $('#price-product').text(
                             parseInt(data?.product?.discount) > 0 ? convertCurrencyFormat(`${data?.product?.discount}000VNĐ`) : convertCurrencyFormat(`${data?.product?.price}000VNĐ`)
@@ -165,7 +243,7 @@ if (isset($_GET['id'])) {
                             return `
                             <li class="w-full border-gray-200">
                                 <div class="flex items-center ps-3">
-                                    <input id="color-product" type="radio" value="${color?.id}" name="list-color-product" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
+                                    <input id="color-product" type="radio" value="${color?.id_color}" name="list-color-product" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                                     style="background-color:${color?.value}"
                                     >
                                     <label for="color-product" class="w-full py-3 ms-2 text-sm font-medium text-gray-900">${color?.name}</label>
@@ -177,7 +255,7 @@ if (isset($_GET['id'])) {
                             return `
                             <li class="w-full border-gray-200">
                                 <div class="flex items-center ps-3">
-                                    <input id="size-product" type="radio" value="${size?.id}" name="list-size-product" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
+                                    <input id="size-product" type="radio" value="${size?.id_size}" name="list-size-product" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
                                     >
                                     <label for="size-product" class="w-full py-3 ms-2 text-sm font-medium text-gray-900">${size?.name}(${size?.value})</label>
                                 </div>
@@ -186,7 +264,7 @@ if (isset($_GET['id'])) {
                         }))
                     }
                 } catch (error) {
-                    window.location.href =url_sys+"/src/views/errors/not-found.php"
+                    window.location.href = url_sys + "/src/views/errors/not-found.php"
                 }
             })
         })

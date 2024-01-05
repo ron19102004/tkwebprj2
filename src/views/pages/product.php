@@ -19,6 +19,7 @@
         }
         ?>
     </main>
+    <?php Helper::addLayout('footer.layout.php'); ?>
 </body>
 
 </html>

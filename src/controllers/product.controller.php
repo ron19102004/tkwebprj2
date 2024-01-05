@@ -88,7 +88,33 @@ class ProductController
             ]);
         }
     }
-
+    public function changeAvatar()
+    {
+        try {
+            $res = $this->productService->findById(Validator::validate('id'));
+            $product = new Product();
+            $product->importDb($res);
+            $product->avatar = $_POST['avatar'] ?? $product->warranty_policy;
+            $this->productService->update($product);
+            echo json_encode([
+                "status" => "success",
+                "message" => 'Cập nhật thành công',
+                "data" => null
+            ]);
+        } catch (ValidateException $th) {
+            echo json_encode([
+                "status" => "error",
+                "message" => $th->getMessage(),
+                "data" => null
+            ]);
+        } catch (CustomException $th) {
+            echo json_encode([
+                "status" => "error",
+                "message" => $th->getMessage(),
+                "data" => null
+            ]);
+        }
+    }
     public function changeWPolicy()
     {
         try {
@@ -221,6 +247,29 @@ class ProductController
             ]);
         }
     }
+    public function findByTakeSkip()
+    {
+        try {
+            $data = $this->productService->findTakeSkip(Validator::validate('take'), Validator::validate('skip'));
+            echo json_encode([
+                "status" => "success",
+                "message" => "Truy xuất thành công",
+                "data" => $data
+            ]);
+        } catch (ValidateException $th) {
+            echo json_encode([
+                "status" => "error",
+                "message" => $th->getMessage(),
+                "data" => null
+            ]);
+        } catch (CustomException $th) {
+            echo json_encode([
+                "status" => "error",
+                "message" => $th->getMessage(),
+                "data" => null
+            ]);
+        }
+    }
 
     public function add()
     {
@@ -229,7 +278,7 @@ class ProductController
                 "name" => Validator::validate('name'),
                 "price" => Validator::validate("price"),
                 "id_brand" => Validator::validate('id_brand'),
-                "id_category"=>Validator::validate("id_category")
+                "id_category" => Validator::validate("id_category")
             ])->execute();
             Helper::toast('success', 'Khởi tạo thành công')->to(Helper::pages('admin/product.php'));
         } catch (ValidateException $th) {

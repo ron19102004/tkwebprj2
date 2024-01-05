@@ -1,5 +1,5 @@
 <section>
-    <h1>Màu Sắc</h1>
+    <h1 class="font-bold text-xl">Màu Sắc</h1>
     <div>
         <!-- Modal toggle -->
 

@@ -10,7 +10,7 @@ class Order {
     const ENTITY_NAME = 'orders';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'finished, id_discount, id_ship, id_cart, id';
+    const FILLABLE = 'orders.finished, orders.id_discount, orders.id_ship, orders.id_cart, orders.id';
 
     // Chuyển đối đối tượng thành mảng
     public function toArray() {
@@ -26,7 +26,6 @@ class Order {
     // Chuyển đối đối tượng thành mảng để lưu vào cơ sở dữ liệu
     public function toArraySave() {
         return [
-            'finished' => $this->finished,
             'id_discount' => $this->id_discount,
             'id_ship' => $this->id_ship,
             'id_cart' => $this->id_cart,

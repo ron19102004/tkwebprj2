@@ -19,6 +19,7 @@ CREATE TABLE
         address VARCHAR(255) NOT NULL,
         phoneNumber VARCHAR(20) NOT NULL,
         id_user BIGINT,
+        deleted boolean DEFAULT false,
         FOREIGN KEY (id_user) REFERENCES users(id)
     );
 
@@ -67,8 +68,27 @@ CREATE TABLE
         id_brand bigint,
         id_category bigint,
         deleted BOOLEAN DEFAULT FALSE,
+        available bigint DEFAULT 0,
         FOREIGN KEY (id_brand) REFERENCES brands(id),
         FOREIGN KEY (id_category) REFERENCES categories(id)
+    );
+
+CREATE TABLE
+    if NOT EXISTS quantity_in (
+        id bigint PRIMARY KEY AUTO_INCREMENT,
+        id_product bigint,
+        value bigint NOT NULL,
+        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (id_product) REFERENCES products(id)
+    );
+
+CREATE TABLE
+    if NOT EXISTS quantity_out (
+        id bigint PRIMARY KEY AUTO_INCREMENT,
+        id_product bigint,
+        value bigint NOT NULL,
+        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (id_product) REFERENCES products(id)
     );
 
 CREATE TABLE
@@ -164,7 +184,7 @@ CREATE TABLE
 CREATE TABLE
     if NOT EXISTS progress (
         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-        time DATETIME,
+        time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         content TEXT,
         id_order BIGINT,
         FOREIGN KEY (id_order) REFERENCES orders(id)

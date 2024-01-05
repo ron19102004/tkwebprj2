@@ -44,7 +44,7 @@ class FileHandler
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
-        $destination = time() . '-' . $uploadedFileName;
+        $destination = time() . '_' . $uploadedFileName;
         $pathUpload = $upload_on . $destination;
         $destination = $uploadDir . $destination;
         if (file_exists($destination)) {

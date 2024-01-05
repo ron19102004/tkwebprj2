@@ -13,8 +13,10 @@
     <main class="p-3 space-y-3">
         <?php 
         if(isset($_GET['id'])){
+            Helper::addAdminComponent('product/quantity-out.php');
             Helper::addAdminComponent('product/edit.php'); 
         } else {
+            Helper::addAdminComponent('product/quantity-in.php');
             Helper::addAdminComponent('product/product.php');
         }
         ?>

@@ -13,7 +13,7 @@ class Cart {
     const ENTITY_NAME = 'carts';
 
     // Thuộc tính mẫu cho các trường có thể điền giá trị
-    const FILLABLE = 'id_color, id_size, id_product, id_user, quantity, finished, deleted, id';
+    const FILLABLE = 'carts.id_color, carts.id_size, carts.id_product, carts.id_user, carts.quantity, carts.finished, carts.deleted, carts.id';
 
     // Chuyển đối đối tượng thành mảng
     public function toArray() {
@@ -37,8 +37,6 @@ class Cart {
             'id_product' => $this->id_product,
             'id_user' => $this->id_user,
             'quantity' => $this->quantity,
-            'finished' => $this->finished,
-            'deleted' => $this->deleted,
         ];
     }
 

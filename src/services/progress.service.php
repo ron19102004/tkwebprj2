@@ -8,6 +8,13 @@ class ProgressService
     {
         $this->repository = new Repository(Progress::ENTITY_NAME, Progress::FILLABLE);
     }
+    public function findByIdOrder($id)
+    {
+        return $this->repository->find()
+            ->where('id_order', '=', $id)
+            ->groupBy('id ASC')
+            ->getMany();
+    }
 
     public function save($entity)
     {
