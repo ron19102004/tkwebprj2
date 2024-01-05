@@ -147,9 +147,10 @@ CREATE TABLE
         id BIGINT PRIMARY KEY AUTO_INCREMENT,
         id_user BIGINT,
         id_product BIGINT,
-        judge INT NOT NULL,
         content TEXT NOT NULL,
         deleted BOOLEAN DEFAULT FALSE,
+        time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        id_comment_reply BIGINT DEFAULT 0,
         FOREIGN KEY (id_user) REFERENCES users(id),
         FOREIGN KEY (id_product) REFERENCES products(id)
     );

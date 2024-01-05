@@ -48,6 +48,10 @@ class Helper
     {
         require($_SERVER['DOCUMENT_ROOT'] . "/src/views/pages/components/" . $name);
     }
+    public static function addController($name)
+    {
+        require($_SERVER['DOCUMENT_ROOT'] . "/src/controllers/" . $name.'.controller.php');
+    }
     public function to($url)
     {
         header('Location: ' . $url);

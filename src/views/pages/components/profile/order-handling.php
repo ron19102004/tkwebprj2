@@ -3,10 +3,7 @@ $userCurrent = json_decode($_SESSION['userCurrent'], true);
 ?>
 <input type="text" hidden value="<?php echo Helper::routes('order.route.php'); ?>" id="url_order">
 <input type="text" hidden value="<?php echo $userCurrent['id'] ?>" id="id_user">
-
-
 <ul id="list-order" class="space-y-4">
-
 </ul>
 <script>
     const id_user = document.getElementById('id_user').value;
@@ -23,8 +20,8 @@ $userCurrent = json_decode($_SESSION['userCurrent'], true);
                     return `
                     <div class="md:flex items-strech py-4 md:py-7 lg:py-5 border-t border-gray-50 bg-gray-50 px-4 shadow-lg hover:shadow-xl">
                         <div class="md:w-4/12 2xl:w-2/4 w-full">
-                            <img src="<?php echo Helper::assets()?>${order.avatar}" alt="Gray Sneakers" class="h-full object-center object-cover md:block hidden rounded-md" />
-                            <img src="<?php echo Helper::assets()?>${order.avatar}" alt="Gray Sneakers" class="md:hidden w-full h-full object-center object-cover rounded-md" />
+                            <img src="<?php echo Helper::assets() ?>${order.avatar}" alt="Gray Sneakers" class="h-full object-center object-cover md:block hidden rounded-md" />
+                            <img src="<?php echo Helper::assets() ?>${order.avatar}" alt="Gray Sneakers" class="md:hidden w-full h-full object-center object-cover rounded-md" />
                         </div>
                         <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
                             <p class="font-bold">${order.product_name}</p>
@@ -43,8 +40,7 @@ $userCurrent = json_decode($_SESSION['userCurrent'], true);
                     </div>
                     `
                 }).join(' '))
-            } catch (error) {
-            }
+            } catch (error) {}
         })
     })
 </script>

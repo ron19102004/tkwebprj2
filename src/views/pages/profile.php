@@ -17,9 +17,6 @@
 <body>
     <?php
     Helper::addLayout('header.layout.php');
-    ?>
-    <!-- component -->
-    <?php
     if (isset($_GET['details_order'])) {
         Helper::addComponent('profile/details-order.php');
     } else {

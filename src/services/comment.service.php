@@ -9,6 +9,14 @@ class CommentService
         $this->repository = new Repository(Comment::ENTITY_NAME, Comment::FILLABLE);
     }
 
+    public function findByIdProduct($id){
+        return DB::select(Comment::FILLABLE.', users.avatar, users.firstName, users.lastName')
+        ->from(Comment::ENTITY_NAME)
+        ->join('users', 'users.id = comments.id_user')
+        ->where('comments.id_product','=', $id,'product_id')
+        ->groupBy('comments.id DESC')
+        ->getMany();
+    }
     public function save($entity)
     {
         $this->repository->save($entity);

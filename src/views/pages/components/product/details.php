@@ -81,9 +81,25 @@ if (isset($_GET['id'])) {
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div class="">
-            <h1 class="font-bold text-xl">Mô tả chi tiết</h1>
-            <div id="description"></div>
+        <div class="mb-4 border-b border-gray-200 ">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mô tả</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Bình luận</button>
+                </li>
+            </ul>
+        </div>
+        <div id="default-tab-content">
+            <div class="hidden p-4 rounded-lg bg-gray-50 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div id="description"></div>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 " id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <div id="comments" class="space-y-3">
+                    <?php Helper::addComponent('product/comment.php');?>
+                </div>
+            </div>
         </div>
     </div>
 </section>
