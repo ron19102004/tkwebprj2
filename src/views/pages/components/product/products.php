@@ -70,7 +70,7 @@
                                     ${p?.discount === 0 ? '':convertCurrencyFormat(p?.price+"000VNĐ")}
                                     </p>
                                     <p class="ml-auto text-base font-medium text-green-500">
-                                        ${percent ? '-'+percent+'%' : ''}
+                                        ${p?.discount > 0 ? `${percent ? '-'+percent+'%' : ''}`:''}
                                     </p>
                                 </div>
                             </div>

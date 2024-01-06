@@ -6,9 +6,9 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap text-left lg:text-left">
             <div class="w-full lg:w-6/12 px-4">
-                <h4 class="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+                <h4 class="text-3xl fonat-semibold text-blueGray-700">Hãy truy cập vào đây</h4>
                 <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
-                    Find us on any of these platforms, we respond 1-2 business days.
+                    Nếu bạn cần giúp đỡ hãy liên hệ với chúng tôi, chúng tôi sẽ phản hồi trong vòng 1-2 ngày.
                 </h5>
                 <div class="mt-6 lg:mb-0 mb-6">
                     <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
@@ -22,10 +22,10 @@
             <div class="w-full lg:w-6/12 px-4">
                 <div class="flex flex-wrap items-top mb-6">
                     <div class="w-full lg:w-4/12 px-4 ml-auto">
-                        <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+                        <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Liên kết hữu ích</span>
                         <ul class="list-unstyled">
                             <li>
-                                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/presentation?ref=njs-profile">About Us</a>
+                                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/presentation?ref=njs-profile">Về chúng tôi</a>
                             </li>
                             <li>
                                 <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>

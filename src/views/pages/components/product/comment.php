@@ -1,12 +1,16 @@
 <?php
 $userCurrent = null;
-if (isset($_SESSION['userCurrent']))
+if (isset($_SESSION['userCurrent'])) {
     $userCurrent = json_decode($_SESSION['userCurrent'], true);
+    echo '<input type="text" hidden id="id_user$" value="' . $userCurrent['id'] . '">';
+} else {
+    echo '<input type="text" hidden id="id_user$" value="-1">';
+}
 if (isset($_GET['id'])) {
     echo '<input type="text" hidden value="' . htmlspecialchars($_GET['id']) . '" id="id_product$">';
 }
 ?>
-<input type="text" hidden id="id_user$" value="<?php echo $userCurrent['id']; ?>">
+<input type="text" hidden id="url_sys" value="<?php echo Helper::env('http'); ?>">
 <input type="text" hidden id="url_comment" value="<?php echo Helper::routes('comment.route.php'); ?>">
 <button id="add-cmt-toggle" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-center items-center space-x-1">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -39,9 +43,13 @@ if (isset($_GET['id'])) {
 </ul>
 <script>
     const id_user$ = document.getElementById('id_user$').value;
+    const url_sys$ = document.getElementById('url_sys').value;
     const url_comment = document.getElementById('url_comment').value;
     const id_product$ = document.getElementById('id_product$').value
     const reply = (idParent) => {
+        if (id_user$+'' === '-1') {
+            window.location.href = url_sys$ + '/src/views/pages/auth/login.auth.php'
+        }
         $(() => {
             $(`#reply${idParent}`).toggle();
             $(`#btn-reply${idParent}`).toggle();
@@ -94,6 +102,9 @@ if (isset($_GET['id'])) {
     }
     $(() => {
         $('#add-cmt-toggle').click(() => {
+            if (id_user$+'' === '-1') {
+                window.location.href = url_sys$ + '/src/views/pages/auth/login.auth.php'
+            }
             $('#add-cmt-form').toggle('slow')
         })
     })

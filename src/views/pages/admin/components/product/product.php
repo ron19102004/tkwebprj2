@@ -30,20 +30,20 @@
                         <!-- Modal body -->
                         <div class="p-4 md:p-5 space-y-4">
                             <div>
-                                <label class="text-white font-bold text-lg">Tên sản phẩm</label>
+                                <label class="dark:text-white font-bold text-lg">Tên sản phẩm</label>
                                 <input type="text" name="name" id="name" required class="w-full rounded h-10" placeholder="Xe">
                             </div>
                             <div>
-                                <label class="text-white font-bold text-lg">Giá</label>
+                                <label class="dark:text-white font-bold text-lg">Giá</label>
                                 <input type="number" name="price" id="price" required class="w-full rounded h-10" placeholder="2000">
                             </div>
                             <div>
-                                <label class="text-white font-bold text-lg">Thương hiệu</label>
+                                <label class="dark:text-white font-bold text-lg">Thương hiệu</label>
                                 <select id="brands" name="id_brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
                                 </select>
                             </div>
                             <div>
-                                <label class="text-white font-bold text-lg">Thể loại</label>
+                                <label class="dark:text-white font-bold text-lg">Thể loại</label>
                                 <select id="categories" name="id_category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
                                 </select>
                             </div>
