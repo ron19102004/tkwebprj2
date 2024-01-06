@@ -17,8 +17,8 @@
                 <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center" style="background-image: url(<?php echo Helper::assets('bicycle-bg.jpg'); ?>);">
                     <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
                     <div class="w-full px-24 z-10">
-                        <h1 class="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
-                        <p class="text-3xl my-4">Capture your personal memory in unique way, anywhere.</p>
+                        <h1 class="text-5xl font-bold text-left tracking-wide">Giữ lấy những điều đặc biệt</h1>
+                        <p class="text-3xl my-4">Ghi lại những khoảng khắc độc đáo của bạn ở bất cứ đâu.</p>
                     </div>
                     <div class="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
                         <span>

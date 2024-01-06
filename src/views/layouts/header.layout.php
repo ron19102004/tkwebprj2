@@ -10,7 +10,7 @@ $url = Helper::env('http') . $_SERVER['PHP_SELF'];
         <div class="md:flex items-center justify-between py-2 px-8 md:px-12">
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold text-gray-800 md:text-3xl">
-                    <a href="#">Brand</a>
+                    <a href="/"><?php echo Helper::env('app_name') ?> Brand</a>
                 </div>
                 <div class="md:hidden">
                     <button id="menu-btn" type="button" class="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none">

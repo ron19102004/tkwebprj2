@@ -27,6 +27,10 @@ class OrderController
             $order->importDb($data);
             $order->finished = true;
             $this->orderService->update($order);
+            DB::save('progress', [
+                "content" => "Đơn hàng đã đến tay người dùng",
+                "id_order" => Validator::validate('id_order')
+            ])->execute();
             echo json_encode([
                 "status" => "success",
                 "message" => "Cập nhật thành công",
@@ -58,7 +62,7 @@ class OrderController
     }
     public function findByIdUserAndOrderFinished()
     {
-        $data = $this->orderService->findByIdUserAndOrderFinished(Validator::validate('id_user'));  
+        $data = $this->orderService->findByIdUserAndOrderFinished(Validator::validate('id_user'));
         echo json_encode($data);
     }
     public function findByIdOrder()
@@ -85,11 +89,11 @@ class OrderController
             $product->importDb($dataP);
             $product->available = $product->available - $cart->quantity;
 
-            DB::save('quantity_out',[
-                "value"=> $cart->quantity,
-                "id_product"=> $product->id
+            DB::save('quantity_out', [
+                "value" => $cart->quantity,
+                "id_product" => $product->id
             ]);
-            
+
             $this->productService->update($product);
             $this->cartService->update($cart);
             echo json_encode([

@@ -30,14 +30,13 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="w-full  flex items-start md:w-full px-3">
                     <div class="-mr-1">
-                        <button onclick="addComment(null,null);" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100">Thêm bình luận</button>
+                        <button onclick="addComment(null);" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100">Thêm bình luận</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- /card-cmt/ -->
 <ul id="cmts" class="max-h-screen overflow-auto  space-y-2">
 </ul>

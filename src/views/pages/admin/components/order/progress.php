@@ -74,7 +74,6 @@ if (isset($_GET['progress'])) {
                 id_order: id_order
             }, (data) => {
                 try {
-                    console.log(data);
                     const res = JSON.parse(data);
                     if (res.status === 'success') {
                         $.toast({
@@ -83,7 +82,7 @@ if (isset($_GET['progress'])) {
                             showHideTransition: 'fade',
                             icon: 'success'
                         })
-                        addProgress('Đơn hàng đã đến tay người dùng')
+                        doLoad();
                     } else $.toast({
                         heading: 'Error',
                         text: res.message,
@@ -123,12 +122,14 @@ if (isset($_GET['progress'])) {
                         })
                         doLoad();
                         $('#value').val('')
-                    } else $.toast({
-                        heading: 'Error',
-                        text: res.message,
-                        showHideTransition: 'fade',
-                        icon: 'error'
-                    })
+                    } else {
+                        $.toast({
+                            heading: 'Error',
+                            text: res.message,
+                            showHideTransition: 'fade',
+                            icon: 'error'
+                        })
+                    }
                 } catch (error) {
 
                 }
